@@ -39,6 +39,8 @@
 #define kOutputBus 0
 #define kDefaultDevice 999999
 
+#define SampleRate 8820.0
+
 #import "TargetConditionals.h"
 
 static Novocaine *audioManager = nil;
@@ -357,8 +359,8 @@ static Novocaine *audioManager = nil;
                "Couldn't get the hardware output stream format");
     
     // TODO: check this works on iOS!
-    _inputFormat.mSampleRate = 44100.0;
-    _outputFormat.mSampleRate = 44100.0;
+    _inputFormat.mSampleRate = SampleRate;
+    _outputFormat.mSampleRate = SampleRate;
     self.samplingRate = _inputFormat.mSampleRate;
     self.numBytesPerSample = _inputFormat.mBitsPerChannel / 8;
     
