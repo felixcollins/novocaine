@@ -242,7 +242,6 @@ static Novocaine *audioManager = nil;
                                          sizeof (sessionCategory),
                                          &sessionCategory), "Couldn't set audio category");    
     
-    
     // Add a property listener, to listen to changes to the session
     CheckError( AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange, sessionPropertyListener, (__bridge void*)self), "Couldn't add audio session property listener");
     
@@ -253,7 +252,9 @@ static Novocaine *audioManager = nil;
     CheckError( AudioSessionSetProperty(kAudioSessionProperty_PreferredHardwareIOBufferDuration, sizeof(preferredBufferSize), &preferredBufferSize), "Couldn't set the preferred buffer duration");
 #endif
 
-    
+	Float64 F64sampleRate = SampleRate;
+	CheckError( AudioSessionSetProperty(kAudioSessionProperty_PreferredHardwareSampleRate, sizeof(F64sampleRate), &F64sampleRate), "Couldn't set the preferred sample rate");
+
     [self checkSessionProperties];
     
 #endif
